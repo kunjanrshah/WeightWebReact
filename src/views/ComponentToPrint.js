@@ -47,27 +47,33 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
         <>
         <div ref={ref} style={{ 'border': '5px solid #ccc', height:'100%' }}>
         <Container fluid>
-            <Row>
-                <Col style={{ 'borderBottom': '1px solid #ccc'}}>
-                    <h3>Aqua Machineries Pvt. Ltd.</h3>
-                    <h6>Nr.Haridarshan Estate, Nr.Express Highway, Ramol,vatva, Ahmedabad</h6>
+            <Row style={{ 'borderBottom': '1px solid #ccc',paddingBottom:'15px',paddingTop:'10px'}}>
+                <Col >
+                    <img
+                        src={require("assets/img/logo.jpeg").default}
+                        alt="..."
+                    />
+                </Col>
+                <Col >
+                    <h2>Aqua Machineries Pvt. Ltd.</h2>
+                    <h5>Nr.Haridarshan Estate, Nr.Express Highway, Ramol,vatva, Ahmedabad</h5>
                 </Col>
             </Row>
-            <Row gutter={24} >
+            <Row gutter={24} style={{paddingTop:'10px'}}>
                 <Col>
                 <table>
                     <tbody>
                     <tr>
-                    <th>Sno # :</th>
-                    <td>{data?.id}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'25px'}}>Sno # :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'25px'}}> {data?.id}</td>
                     </tr>
                     <tr>
-                    <th>Date :</th>
-                    <td>{convertDate(data?.createdAt)}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Date :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{convertDate(data?.createdAt)}</td>
                     </tr>
                     <tr>
-                    <th>Charge :</th>
-                    <td>{data?.charges} </td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Charge :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.charges} </td>
                     </tr>
                     </tbody>
                 </table>
@@ -76,28 +82,28 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                 <table>
                     <tbody>
                     <tr>
-                    <th>{settingConst?.vehicle} # :</th>
-                    <td>{data?.vehicle?.vehicle_number}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>{settingConst?.vehicle} # :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.vehicle?.vehicle_number}</td>
                     </tr>
                     <tr>
-                    <th>{settingConst?.supplier} :</th>
-                    <td>{data?.supplier.supplier_name}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>{settingConst?.supplier} :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.supplier.supplier_name}</td>
                     </tr>
                     <tr>
-                    <th>{settingConst?.receiver} :</th>
-                    <td>{data?.receiver.receiver_name}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>{settingConst?.receiver} :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.receiver.receiver_name}</td>
                     </tr>
                     <tr>
-                    <th>{settingConst?.material} :</th>
-                    <td>{data?.material.material_name}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>{settingConst?.material} :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.material.material_name}</td>
                     </tr>
                     <tr>
-                    <th>{settingConst?.villege} :</th>
-                    <td>{data?.villege?.villege_name}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>{settingConst?.villege} :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.villege?.villege_name}</td>
                     </tr>
                     <tr>
-                    <th>{settingConst?.remark} :</th>
-                    <td>{data?.remark?.remark}</td>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>{settingConst?.remark} :</th>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.remark?.remark}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -108,27 +114,27 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
             <Table striped bordered hover size="sm">
                 <thead>
                     <tr>
-                    <th>#</th>
-                    <th>Gross Weight</th>
-                    <th>Tare Weight</th>
-                    <th>Net Weight</th>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>#</th>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Gross Weight</th>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Tare Weight</th>
+                    <th style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Net Weight</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>1</td>
-                    <td>{data?.gross_weight}</td>
-                    <td>{data?.tare_weight}</td>
-                    <td>{data?.net_weight}</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>1</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.gross_weight}</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.tare_weight}</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.net_weight}</td>
                     </tr>
                 </tbody>
                 </Table>
             </Row>
             <Row style={{ marginTop: 48 }}>
-                <Col>Driver Sign</Col>
-                <Col>Operator Sign</Col>
-                <Col>Authorised Sign</Col>
-                <Col>Security Sign</Col>
+                <Col style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Driver Sign</Col>
+                <Col style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Operator Sign</Col>
+                <Col style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Authorised Sign</Col>
+                <Col style={{ 'color': '#000',paddingBottom:'10px',fontWeight:'bold',fontSize:'20px'}}>Security Sign</Col>
             </Row>
         </Container>
         </div>
