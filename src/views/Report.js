@@ -6,6 +6,9 @@ import ReportEdit from './ReportEdit.js';
 import { DateRangePicker } from 'rsuite';
 import "rsuite/dist/rsuite.min.css";
 import {SettingConstant} from "../services/constants.js";
+import { useReactToPrint } from 'react-to-print';
+import { ComponentToPrint } from './ComponentToPrint.js';
+import ReactToPrint from 'react-to-print';
 
 // react-bootstrap components
 import {
@@ -24,6 +27,8 @@ import {
 function ReportList() {
   const [settingConst,setsettingConst]=useState({});
   const baseUrl='weighing';
+  const componentRef = useRef([]);
+
   // const [List,setList]=useState([]);
   const [MasterChecked,setMasterChecked]=useState(false);
   const [SelectedList,setSelectedList]=useState([]);
@@ -283,6 +288,19 @@ function ReportList() {
     console.log("changed in variables");
     getReport();
   }, [vehicleId,villegeId,remarkId,materialId,supplierId,receiverId,userId, dateRange,statusValue,Charges,Sno]);
+
+
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  // });
+
+  // function printReport(ele){
+  //   let handlePrint = useReactToPrint({
+  //     content: () => componentRef.current[`print_${ele.id}`]
+  //   });
+
+  //   handlePrint();
+  // }
 
   return (
     !isRecordEdited ? <>
@@ -562,6 +580,7 @@ function ReportList() {
                       <th className="border-0">{settingConst?.material}</th>
                       <th className="border-0">{settingConst?.villege}</th>
                       <th className="border-0">{settingConst?.remark}</th>
+                      <th className="border-0">Action</th>
                       {/* <th className="border-0">Gross Weight</th>
                       <th className="border-0">Tare Weight</th>
                       <th className="border-0">Net Weight</th> */}
@@ -591,7 +610,16 @@ function ReportList() {
                               <td>{ele.material.material_name}</td>
                               <td>{ele.villege.villege_name}</td>
                               <td>{ele.remark.remark}</td>
-
+                              <td>
+                                  <div style={{ display: "none" }}>
+                                    <ComponentToPrint allResponseData={ele} ref={reference => componentRef.current[`print_${ele.id}`] = reference} />
+                                  </div>
+                                  <ReactToPrint
+                                    trigger={() => <button className="btn btn-sm btn-success mb-2 mr-2">PRINT</button>}
+                                    content={() => componentRef.current[`print_${ele.id}`]}
+                                  />
+                                  {/* <button className="btn btn-sm btn-success mb-2 mr-2" onClick={printReport(ele)}>PRINT</button> */}
+                              </td>
                             </tr>
 
                         )
