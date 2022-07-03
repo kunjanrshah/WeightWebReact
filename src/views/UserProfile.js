@@ -361,8 +361,8 @@ function User() {
 
  function handleResetMachine(){
     if (client) {
-      client.publish("kunjan/superb1", 'T');
-      client.publish("kunjan/superb2", 'T');
+      client.publish("kunjan/superb1", '~');
+      client.publish("kunjan/superb2", '~');
       console.log("reset machine");
     }
  }
@@ -388,9 +388,9 @@ useEffect(()=>{
 
       client.on("message", function(topic,message){
       console.log(topic,message.toString());
-      if(topic == "kunjan/superb1" && message.toString()!='T')
+      if(topic == "kunjan/superb1" && message.toString()!='~')
         setWeight1(+message.toString());
-      if(topic == "kunjan/superb2" && message.toString()!='T')
+      if(topic == "kunjan/superb2" && message.toString()!='~')
         setWeight2(+message.toString());
       });
   }
