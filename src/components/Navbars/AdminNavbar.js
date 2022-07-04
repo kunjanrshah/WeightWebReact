@@ -43,7 +43,7 @@ function Header() {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "Aqua Machineries Pvt. Ltd.";
   };
   return (
     <Navbar bg="light" expand="lg">
