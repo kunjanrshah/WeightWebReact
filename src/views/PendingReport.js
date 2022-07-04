@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { ApiService } from "services";
 import { useHistory } from "react-router-dom";
 import {SettingConstant} from "../services/constants.js";
+import ReactToPrint from 'react-to-print';
+import { ComponentToPrint } from './ComponentToPrint.js';
 
 // react-bootstrap components
 import {
@@ -26,6 +28,7 @@ function PendingReport() {
   const formInput = useRef(null);
   const editRefs = useRef([]);
   const history = useHistory();
+  const componentRef = useRef([]);
 
   //vehicle 
   let [vehicleId, setVehicleId] = useState(null);
@@ -188,6 +191,13 @@ function PendingReport() {
                               <td>{ele.remark.remark}</td>
                               <td>
                                 <button className="btn btn-sm btn-warning mb-2 mr-2" onClick={() => handleEdit(ele.id)}>EDIT</button>
+                                <div style={{ display: "none" }}>
+                                    <ComponentToPrint allResponseData={ele} ref={reference => componentRef.current[`print_${ele.id}`] = reference} />
+                                  </div>
+                                  <ReactToPrint
+                                    trigger={() => <button className="btn btn-sm btn-success mb-2 mr-2">PRINT</button>}
+                                    content={() => componentRef.current[`print_${ele.id}`]}
+                                  />
                               </td>
                             </tr>
                           
