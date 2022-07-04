@@ -123,9 +123,9 @@ export const ComponentToPrint = React.forwardRef((props, ref) => {
                 <tbody>
                     <tr>
                     <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>1</td>
-                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.gross_weight}</td>
-                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.tare_weight}</td>
-                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.net_weight}</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.gross_weight} KG</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.tare_weight} KG</td>
+                    <td style={{ 'color': '#000',paddingBottom:'10px',fontSize:'20px'}}>{data?.net_weight} KG</td>
                     </tr>
                 </tbody>
                 </Table>
