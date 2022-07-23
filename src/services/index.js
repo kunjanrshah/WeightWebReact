@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 
-const BASEURL = "http://127.0.0.1:3200";
+const BASEURL = "http://127.0.0.1:3200"; //"http://192.168.10.6:3200"
 
 export async function ApiService (url, type, requestData=null, headers=null) {
     //const history = useHistory();
