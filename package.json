@@ -11,7 +11,6 @@
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.8",
     "mqtt": "4.3.6",
-    "node-sass": "4.14.1",
     "react": "17.0.1",
     "react-bootstrap": "1.4.3",
     "react-chartist": "0.14.3",
@@ -21,7 +20,9 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.1",
     "react-to-print": "2.14.4",
-    "rsuite": "5.6.5"
+    "rsuite": "5.6.5",
+    "sass": "^1.97.3",
+    "socket.io-client": "^4.8.3"
   },
   "optionalDependencies": {
     "jquery": "3.5.1",
@@ -34,9 +35,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "compile:scss": "node-sass src/assets/scss/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.css",
-    "minify:scss": "node-sass src/assets/scss/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.min.css --output-style compressed",
-    "map:scss": "node-sass src/assets/scss/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.css --source-map true",
+    "compile:scss": "sass src/assets/scss/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.css",
+    "minify:scss": "sass src/assets/scss/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.min.css --output-style compressed",
+    "map:scss": "sass src/assets/scss/light-bootstrap-dashboard-react.scss src/assets/css/light-bootstrap-dashboard-react.css --source-map true",
     "build:scss": "npm run compile:scss && npm run minify:scss && npm run map:scss"
   },
   "browserslist": {

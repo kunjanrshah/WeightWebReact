@@ -321,28 +321,6 @@ function ReportEdit(props, ref) {
     getReceiver();
     getVillege();
     getRemark();
-
-    //mqtt
-    var client = mqtt.connect('mqtt://broker.hivemq.com:8000/mqtt');
-
-    client.on("connect", function(){
-        client.subscribe("Nikhil");
-        client.subscribe("Nikhil");
-
-        console.log("Client has subscribed successfully");
-    });
-
-    client.on("message", function(topic,message){
-      //console.log(topic,message.toString());
-       if(topic == "Nikhil")
-         setWeight1(+message.toString());
-       if(topic == "Nikhil1")
-         setWeight2(+message.toString());
-    });
-    // close mqtt
-
-
-
   }, []);
 
   const charges = useRef(null);

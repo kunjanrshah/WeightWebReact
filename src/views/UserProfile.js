@@ -5,6 +5,7 @@ import { ComponentToPrint } from './ComponentToPrint.js';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {SettingConstant} from "../services/constants.js";
+import { io } from "socket.io-client";
 
 // react-bootstrap components
 import {
@@ -22,6 +23,8 @@ import {
 import { useParams } from "react-router-dom";
 
 const mqtt=require('mqtt');
+// Use your main NestJS URL (e.g., 3200)
+const socket = io("http://localhost:3500"); 
 
 function User() {
   const [settingConst,setsettingConst]=useState({});
@@ -360,41 +363,30 @@ function User() {
  }
 
  function handleResetMachine(){
-    if (client) {
-      client.publish("kunjan/superb1", '~');
-      client.publish("kunjan/superb2", '~');
-      console.log("reset machine");
-    }
+   if(socket)
+   {
+     socket.emit("weight-reset");
+   }
+   console.log("reset machine");  
  }
 
- //weight machine mqtt
-const [client, setClient] = useState(null);
-const mqttConnect = (host, mqttOption) => {
-  //setConnectStatus('Connecting');
-  setClient(mqtt.connect(host, mqttOption));
-};
+// Inside your component
+useEffect(() => {
+  
+  socket.on("connect", () => {
+    console.log("Connected to NestJS WebSocket!");
+  });
 
-//close weight machine mqtt
-useEffect(()=>{
-  if (client) {
-      client.on("connect", function(){
-        client.subscribe("kunjan/superb1");
-        client.subscribe("kunjan/superb2");
+  socket.on("weight-update", (data) => {
+    console.log("Weight from LAN:", data);
+    setWeight1(Number(data));
+  });
 
-        //client.subscribe("Nikhil1");
-
-        console.log("Client has subscribed successfully");
-      });
-
-      client.on("message", function(topic,message){
-      console.log(topic,message.toString());
-      if(topic == "kunjan/superb1" && message.toString()!='~')
-        setWeight1(+message.toString());
-      if(topic == "kunjan/superb2" && message.toString()!='~')
-        setWeight2(+message.toString());
-      });
-  }
-},[client])
+  // Cleanup: Disconnect when the component unmounts
+  return () => {
+    socket.off('weight-update');
+  };
+}, []);
 
  async function getSettingConst(){
     setsettingConst(await SettingConstant());
@@ -411,28 +403,6 @@ useEffect(()=>{
     getReceiver();
     getVillege();
     getRemark();
-
-    //mqtt
-    //client = mqtt.connect('mqtt://broker.hivemq.com:8000/mqtt');
-    mqttConnect('mqtt://broker.hivemq.com:8000/mqtt');
-    // client.on("connect", function(){
-    //     client.subscribe("Nikhil");
-    //     client.subscribe("Nikhil1");
-
-    //     console.log("Client has subscribed successfully");
-    // });
-
-    // client.on("message", function(topic,message){
-    //   //console.log(topic,message.toString());
-    //    if(topic == "Nikhil")
-    //      setWeight1(+message.toString());
-    //    if(topic == "Nikhil1")
-    //      setWeight2(+message.toString());
-    // });
-    // close mqtt
-
-
-
   }, []);
 
   const charges = useRef(null);
