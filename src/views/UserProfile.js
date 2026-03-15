@@ -377,9 +377,10 @@ useEffect(() => {
     console.log("Connected to NestJS WebSocket!");
   });
 
-  socket.on("weight-update", (data) => {
-    console.log("Weight from LAN:", data);
-    setWeight1(Number(data));
+  // To Receive:
+  socket.on('weight-update', (data) => {
+      if(data.id === 'scale_1') setWeight1(data.weight);
+      if(data.id === 'scale_2') setWeight2(data.weight);
   });
 
   // Cleanup: Disconnect when the component unmounts
